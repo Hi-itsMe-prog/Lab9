@@ -9,6 +9,7 @@ public class Main {
         students[2] = new Student("Peter Jones", "10.09.2009", "789 Pine Ln", "555-9012", "3", "Computer Science");
 
         Scanner in = new Scanner(System.in);
+
         System.out.println("Names of all students:");
         for (Student student : students) {
             System.out.println(student.getname());
