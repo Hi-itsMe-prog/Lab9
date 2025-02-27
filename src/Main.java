@@ -48,7 +48,7 @@ public class Main {
 
 class Student {
     private String name;
-    private String enterDate; // Originally a String, could be changed to LocalDate
+    private String enterDate;
     private String address;
     private String phonenumb;
     private String course;
