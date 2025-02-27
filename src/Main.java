@@ -15,29 +15,40 @@ public class Main {
             System.out.println(student.getname());
         }
 
-        System.out.println("Enter the needed faculty: ");
-        String s = in.nextLine();
-        System.out.printf("Students of %s faculty:", s);
+        System.out.print("Enter the needed faculty: ");
+        String facultyInput = in.nextLine();
+        System.out.printf("Students of %s faculty:\n", facultyInput);
+        boolean foundFaculty = false;
         for (Student student : students) {
-            if (student.getfaculty().equals(s)) {
+            if (student.getfaculty().equalsIgnoreCase(facultyInput)) {
                 System.out.println(student.getname());
+                foundFaculty = true;
             }
         }
+        if (!foundFaculty) {
+            System.out.println("No students found for this faculty.");
+        }
 
-        System.out.println("Enter the needed birthyear: ");
-        int a = in.nextInt();
-        System.out.printf("Students entered after %d:", a);
+        System.out.print("Enter the needed birthyear: ");
+        int birthYearInput = in.nextInt();
+        System.out.printf("Students entered after %d:\n", birthYearInput);
+        boolean foundYear = false;
         for (Student student : students) {
-            if (Integer.parseInt(student.enterDate.substring(6)) > a) {
+            int studentBirthYear = Integer.parseInt(student.getEnterDate().substring(6));
+            if (studentBirthYear > birthYearInput) {
                 System.out.println(student.getname());
+                foundYear = true;
             }
+        }
+        if (!foundYear) {
+            System.out.println("No students found born after this year.");
         }
     }
 }
 
 class Student {
     private String name;
-    public String enterDate;
+    private String enterDate; // Originally a String, could be changed to LocalDate
     private String address;
     private String phonenumb;
     private String course;
@@ -60,7 +71,11 @@ class Student {
         this.name = name;
     }
 
-    public void setDate(String enterDate) {
+    public String getEnterDate() {
+        return this.enterDate;
+    }
+
+    public void setEnterDate(String enterDate) {
         this.enterDate = enterDate;
     }
 
